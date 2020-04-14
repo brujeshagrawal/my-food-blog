@@ -1,0 +1,52 @@
+{% extends "djangoapp/base.html" %} {% load static %} 
+{% load crispy_forms_tags%} {% block body_block %}
+
+<div
+  class="row"
+  style="
+    padding: 100px 0px;
+    background-color: white;
+    font-family: Dancing Script, cursive;
+  "
+>
+  <div class="col-sm-3"></div>
+  <div class="col-sm-6" style="margin: 10px;">
+    <div
+      style="
+        background-color: white;
+        padding: 10px;
+        border-radius: 5px;
+        box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 0.2),
+          0 6px 20px 0 rgba(110, 103, 103, 0.19);
+      "
+    >
+      <h1 align="center">
+        Register Here
+      </h1>
+      <h3 align="center">
+        Start your cooking journey with me!!
+      </h3>
+      <form
+        action="{% url 'djangoapp:register' %}"
+        method="post"
+        enctype="multipart/form-data"
+        style="padding-top: 20px;"
+      >
+        {% csrf_token %} {{ user_form|crispy }} {{ profile_form|crispy }}
+        <div align="center">
+          <button type="submit" class="btn btn-info btn-block">
+            Register
+          </button>
+        </div>
+      </form>
+      <div style="padding-top: 10px;" align="center">
+        <p>
+          Already have an account?
+          <a href="{% url 'djangoapp:user_login' %}">Login</a>
+        </p>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-3"></div>
+</div>
+{% endblock %}

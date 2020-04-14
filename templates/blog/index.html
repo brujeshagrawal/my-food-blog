@@ -1,0 +1,79 @@
+{% extends "djangoapp/base.html" %} {% load static %} {% block body_block %}
+
+<!-- <div class="admin_add_blog_button" align="center">
+  {% if request.user.is_superuser %}
+  <a href="{% url 'blog:add_blog' %}"
+    ><button class="btn btn-primary" style="margin-top: 10px;">
+      Add Blog
+    </button></a
+  >
+  {% endif %}
+</div> -->
+
+{% if blogs.count > 0 %}
+<div style="padding: 10px 50px; font-family: Dancing Script, cursive;">
+  {% for blog in blogs %}
+  <div class="card mb-3" style="max-width: 1200px; height: 250px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img
+          src="{{ blog.image.url }}"
+          class="card-img"
+          height="248px"
+          alt="receipe-image"
+        />
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h3 class="card-title">
+            <a
+              href="{% url 'blog:get_blog' blog.id %}"
+              style="color: #8e1f1f; font-size: 30px;"
+              >{{ blog.headline }}</a
+            >
+            {% if request.user.is_superuser %}
+            <div align="right" style="display: inline-block;">
+              <a href="{% url 'blog:edit_blog' blog_id=blog.id %}"
+                ><i class="fa fa-edit"></i
+              ></a>
+              <a href="{% url 'blog:delete_blog' blog_id=blog.id %}"
+                ><i class="fa fa-trash"></i
+              ></a>
+              {% if blog.is_visible %}
+              <a href="{% url 'blog:blog_visibility' blog.id %}"
+                ><i class="fa fa-eye"></i
+              ></a>
+              {% else %}
+              <a href="{% url 'blog:blog_visibility' blog_id=blog.id %}"
+                ><i class="fa fa-eye-slash"></i
+              ></a>
+              {% endif %}
+            </div>
+            {% endif %}
+          </h3>
+          <p class="card-text" style="font-size: 20px;">
+            {{ blog.summary }}
+          </p>
+          <p class="card-text">
+            <small class="text-muted">Uploaded on {{ blog.created_at }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div
+  style="
+    color: white;
+    height: 400px;
+    text-align: center;
+    font-size: 30px;
+    font-family: Dancing Script, cursive;
+    padding-top: 180px;
+  "
+>
+  Sorry, We don't have anything to show you at present.
+</div>
+{% endif %} {% endblock %}

@@ -1,0 +1,70 @@
+{% extends "djangoapp/base.html" %} {% block body_block %}
+<div
+  class="dashboard-container"
+  style="margin: 0px 10px; font-family: Dancing Script, cursive;"
+>
+  <div
+    class="row align-items-start"
+    style="background-color: white; padding: 30px 0px;"
+  >
+    <div
+      class="col-sm-3"
+      style="
+        border-radius: 10px;
+        margin: 10px 20px;
+        box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 0.2),
+          0 6px 20px 0 rgba(110, 103, 103, 0.19);
+      "
+    >
+      <div class="side-navigations">
+        <ul class="list-group list-group-flush" style="width: 100%;">
+          <button
+            type="button"
+            class="list-group-item list-group-item-action dashboard-profile-button dashboard-button active"
+            style="text-align: center;"
+            data="profile"
+          >
+            Profile
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action dashboard-addblog-button dashboard-button"
+            style="text-align: center;"
+            data="add_blog"
+          >
+            Add Blog
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action dashboard-feedbacks-button dashboard-button"
+            style="text-align: center;"
+            data="feedbacks"
+          >
+            Feedbacks
+          </button>
+          <button
+            type="button"
+            class="list-group-item list-group-item-action dashboard-users-button dashboard-button"
+            style="text-align: center;"
+            data="users"
+          >
+            Users
+          </button>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="col-sm-8"
+      style="
+        border-radius: 10px;
+        margin: 10px 20px;
+        box-shadow: 0 4px 8px 0 rgba(100, 100, 100, 0.2),
+          0 6px 20px 0 rgba(110, 103, 103, 0.19);
+      "
+    >
+      <div class="dashboard-body"></div>
+    </div>
+  </div>
+</div>
+{% endblock %}

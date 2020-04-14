@@ -1,0 +1,54 @@
+{% extends "djangoapp/base.html" %} {% block body_block %}
+<div
+  class="container"
+  style="padding-top: 20px; font-family: Dancing Script, cursive;"
+>
+  <div
+    style="
+      font-size: 40px;
+      font-weight: bold;
+      color: #8e1f1f;
+      text-align: center;
+      margin: 30px auto;
+      width: 200px;
+      height: 70px;
+      border: 2px solid white;
+    "
+  >
+    {{ blog.headline }}
+  </div>
+  <div>
+    <img
+      src="{{ blog.image.url }}"
+      alt="receipe-image"
+      width="100%"
+      height="400px"
+      style="border: 2px solid white;"
+    />
+  </div>
+  <div
+    style="
+      font-size: 30px;
+      color: white;
+      text-align: center;
+      margin: 30px auto;
+    "
+  >
+    {{ blog.summary }}
+  </div>
+  <div
+    style="
+      font-size: 20px;
+      color: white;
+      text-align: center;
+      margin: 30px auto;
+    "
+  >
+    {{ blog.content|linebreaks }}
+  </div>
+  <hr clas="my-4" style="border-top: 1px solid white;" />
+  <div style="color: rgb(100, 100, 100); font-size: 15px;">
+    Uploaded on {{ blog.created_at }}
+  </div>
+</div>
+{% endblock %}

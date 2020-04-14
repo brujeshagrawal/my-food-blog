@@ -1,0 +1,15 @@
+<div class="row" style="padding: 10px;">
+  {% for feedback in feedbacks %}
+  <div class="col-sm-4" style="padding-top: 10px;">
+    <div class="card">
+      <div class="card-body">
+        <h5 class="card-title">{{ feedback.user }}</h5>
+        <p class="card-text">
+          {{ feedback.message }}
+        </p>
+        <p style="color: grey;"><small>{{ feedback.created_on }}</small></p>
+      </div>
+    </div>
+  </div>
+  {% endfor %}
+</div>
