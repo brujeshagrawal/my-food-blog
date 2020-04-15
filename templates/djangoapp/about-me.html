@@ -1,0 +1,19 @@
+{% load static %}
+
+<div class="about-me" style="color: white;">
+  <div align="center">
+    <img
+      src="{% static 'images/profile_pic.jpg' %}"
+      height="150px"
+      width="150px"
+      style="border: 2px solid white; border-radius: 50%;"
+      alt="Profile-pic"
+    />
+    <h2 style="font-size: 40px;">Who am I?</h2>
+  </div>
+  <div style="padding: 10px 40px; text-align: center; font-size: 25px;">
+    <p>
+      {% lorem 2 p %}
+    </p>
+  </div>
+</div>

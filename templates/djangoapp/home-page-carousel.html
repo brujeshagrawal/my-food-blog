@@ -1,0 +1,45 @@
+{% load static %}
+
+<div class="container" style="padding-top: 20px;">
+  <div class="welcome_poster">
+    <div
+      id="carouselExampleSlidesOnly"
+      class="carousel slide"
+      data-ride="carousel"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img
+            src="{% static 'images/rsz_messy-pizza-on-a-black-table.jpg' %}"
+            class="d-block w-100 img-fluid"
+            alt="Home-page-image"
+          />
+          <div
+            class="carousel-caption"
+            style="top: 20%; color: #8e1f1f;"
+            align="center"
+          >
+            <p style="font-size: 6.5vw; font-weight: bold;">
+              Welcome to My Blog!!
+            </p>
+            <div style="color: white; font-size: 3.5vw;">
+              {% if user.is_authenticated %}
+              <p>
+                Nice to connect with you. Let's cook!!!
+              </p>
+              {% else %}
+              <p>
+                Please
+                <a href="{% url 'djangoapp:user_login' %}"
+                  ><b style="color: #8e1f1f; font-size: 4vw;">Login</b></a
+                >
+                to stay updated.
+              </p>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
