@@ -20,11 +20,6 @@ def index(request):
 
 
 @login_required
-def special(request):
-    return Httpresponse("You are logged in !")
-
-
-@login_required
 def user_logout(request):
     logout(request)
     return HttpResponseRedirect(reverse('index'))
@@ -93,7 +88,6 @@ def feedback(request):
     return HttpResponseRedirect(reverse('index'))
 
 
-@login_required
 @user_passes_test(lambda u: u.is_superuser)
 def dashboard(request):
     return render(request, 'djangoapp/dashboard.html', {})
@@ -121,6 +115,4 @@ def edit_bio(request):
     user = User.objects.get(username=request.user)
     profile = UserProfileInfo(user=user)
     bio = profile.bio
-    print(bio)
-    print("hello")
     return render(request, 'djangoapp/edit-bio.html', {"bio": bio})

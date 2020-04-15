@@ -1,0 +1,83 @@
+<div style="margin: 10px 20px; background-color: white; border-radius: 5px;">
+  <div class="row align-items-center" style="padding: 20px; color: grey;">
+    <div class="col-sm-3">
+      <p align="center" style="font-size: 20px; font-weight: bold;">
+        Receipe By Category
+      </p>
+      <ul style="list-style-type: none; padding-left: 0px;" align="center">
+        <a href="{% url 'blog:blog_home' %}" class="footer-option"
+          ><li>Backery</li></a
+        >
+        <a href="{% url 'blog:blog_home' %}" class="footer-option"
+          ><li>South Indian</li></a
+        >
+        <a href="{% url 'blog:blog_home' %}" class="footer-option"
+          ><li>Chinese</li></a
+        >
+        <a href="{% url 'blog:blog_home' %}" class="footer-option"
+          ><li>Italian</li></a
+        >
+        <a href="{% url 'blog:blog_home' %}" class="footer-option"
+          ><li>Punjabi</li></a
+        >
+      </ul>
+    </div>
+    <div class="col-sm-6">
+      <div align="center" style="font-size: 25px;">
+        <p>
+          <q
+            >Food should flirt with the palette. If the food doesn't flirt with
+            your palette, then it's not fun enough.</q
+          >
+        </p>
+        <p>Ranveer Brar</p>
+      </div>
+    </div>
+    <!-- <div class="col-sm-1">&nbsp;</div> -->
+    <div class="col-sm-3">
+      {% if request.user.is_authenticated %}
+      <form action="{% url 'feedback' %}" method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <textarea
+            class="form-control"
+            id="exampleFormControlTextarea1"
+            rows="4"
+            name="message"
+            placeholder="Write your feedback here..."
+          ></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary btn-block">
+          Submit
+        </button>
+      </form>
+      {% else %}
+      <p align="center">
+        Please Login to stay updated.
+      </p>
+      <a href="{% url 'djangoapp:user_login' %}"
+        ><button type="submit" class="btn btn-primary btn-block">
+          Login
+        </button></a
+      >
+      {% endif %}
+    </div>
+  </div>
+
+  <div class="row align-items-center">
+    <div class="col-sm"></div>
+    <div class="col-sm" align="center" style="padding: 5px;">
+      <a href="#" class="fa fa-facebook"></a>&nbsp;&nbsp;&nbsp;
+      <a href="#" class="fa fa-youtube"></a>&nbsp;&nbsp;&nbsp;
+      <a href="#" class="fa fa-instagram"></a>&nbsp;&nbsp;&nbsp;
+      <a href="#" class="fa fa-google"></a>
+    </div>
+    <div class="col-sm"></div>
+  </div>
+</div>
+
+<div>
+  <p align="center" style="color: white;">
+    @copyright with Brujesh Agrawal.
+  </p>
+</div>

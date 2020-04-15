@@ -22,13 +22,9 @@ from djangoapp import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', views.index, name="index"),
-    path('special/', views.special, name="special"),
     path('account/', include('djangoapp.urls')),
-    path('logout/', views.user_logout, name='logout'),
     path('blog/', include('blog.urls')),
     path('feedback/', views.feedback, name='feedback'),
-    path('dashboard-feedback/', views.dashboard_feedback,
-         name="dashboard_feedback"),
 ]
 
 if settings.DEBUG:

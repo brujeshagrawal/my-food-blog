@@ -1,7 +1,13 @@
-{% extends "djangoapp/base.html" %} {% load static %} {% block body_block %}
+{% extends "djangoapp/base.html" %} {% load static %} 
+
+{% block title %}
+<title>CookWithMe</title>
+{%endblock %}
+
+{% block body_block %}
 
 <div class="container" style="padding-top: 20px;">
-  <div class="welcome_poster" style="font-family: Dancing Script, cursive;">
+  <div class="welcome_poster">
     <div
       id="carouselExampleSlidesOnly"
       class="carousel slide"
@@ -48,7 +54,7 @@
 
 <div
   class="about-me"
-  style="color: white; font-family: Dancing Script, cursive;"
+  style="color: white;"
 >
   <div align="center">
     <img
@@ -67,7 +73,7 @@
   </div>
 </div>
 
-<div class="latest_blogs" style="font-family: Dancing Script, cursive;">
+<div class="latest_blogs">
   <p
     align="center"
     style="

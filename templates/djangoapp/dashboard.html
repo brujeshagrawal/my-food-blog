@@ -1,8 +1,48 @@
-{% extends "djangoapp/base.html" %} {% block body_block %}
-<div
-  class="dashboard-container"
-  style="margin: 0px 10px; font-family: Dancing Script, cursive;"
->
+{% extends "djangoapp/base.html" %} {% block title %}
+<title>dashboard | CookWithMe</title>
+{% endblock %} {% block extra_script %}
+<script>
+  $(document).ready(function () {
+    $(".dashboard-body").load("{% url 'djangoapp:dashboard_profile' %}");
+  });
+
+  $(document).ready(function () {
+    $(".dashboard-addblog-button").click(function (event) {
+      $(".dashboard-button").removeClass("active");
+      $(".dashboard-addblog-button").addClass("active");
+      $(".dashboard-body").load("{% url 'blog:add_blog' %}");
+    });
+  });
+  $(document).ready(function () {
+    $(".dashboard-feedbacks-button").click(function (event) {
+      $(".dashboard-button").removeClass("active");
+      $(".dashboard-feedbacks-button").addClass("active");
+      $(".dashboard-body").load("{% url 'djangoapp:dashboard_feedback' %}");
+    });
+  });
+  $(document).ready(function () {
+    $(".dashboard-profile-button").click(function (event) {
+      $(".dashboard-button").removeClass("active");
+      $(".dashboard-profile-button").addClass("active");
+      $(".dashboard-body").load("{% url 'djangoapp:dashboard_profile' %}");
+    });
+  });
+  $(document).ready(function () {
+    $(".dashboard-users-button").click(function (event) {
+      var data = $(this).data("data");
+      $(".dashboard-button").removeClass("active");
+      $(".dashboard-users-button").addClass("active");
+    });
+  });
+  $(document).ready(function () {
+    $(".edit-bio").click(function (event) {
+      console.log("hi");
+      $(".display-bio").load("{% url 'djangoapp:edit_bio' %}");
+    });
+  });
+</script>
+{% endblock %} {% block body_block %}
+<div class="dashboard-container" style="margin: 0px 10px;">
   <div
     class="row align-items-start"
     style="background-color: white; padding: 30px 0px;"

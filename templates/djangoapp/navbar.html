@@ -1,0 +1,82 @@
+{% load static %}
+
+<nav
+  class="navbar navbar-expand-lg navbar-light sticky-top"
+  style="min-height: 80px; background-color: white;"
+>
+  <a
+    class="navbar-brand"
+    href="{% url 'index' %}"
+    style="font-family: Bonbon, cursive; font-weight: bold;"
+    ><img
+      src="{% static 'images/logo.png' %}"
+      width="40"
+      height="30"
+      class="d-inline-block align-top"
+      alt=""
+    />&nbsp;CookWithMe</a
+  >
+  <button
+    class="navbar-toggler"
+    type="button"
+    data-toggle="collapse"
+    data-target="#navbarNavAltMarkup"
+    aria-controls="navbarNavAltMarkup"
+    aria-expanded="false"
+    aria-label="Toggle navigation"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div
+    class="collapse navbar-collapse justify-content-between"
+    id="navbarNavAltMarkup"
+  >
+    <div
+      class="navbar-nav ml-auto"
+      style="font-family: sofia; color: black; font-weight: bold;"
+    >
+      <a class="nav-item nav-link active" href="{% url 'index' %}"
+        >Home <span class="sr-only">(current)</span></a
+      >
+      <a class="nav-item nav-link" href="{% url 'blog:blog_home' %}">Blog </a>
+      {% if user.is_authenticated %}
+      <li class="nav-item dropdown">
+        <a
+          class="nav-link dropdown-toggle"
+          href="#"
+          id="navbarDropdown"
+          role="button"
+          data-toggle="dropdown"
+          aria-haspopup="true"
+          aria-expanded="false"
+        >
+          Hi, {{ user.username }}
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+          {% if request.user.is_superuser %}
+          <a class="dropdown-item" href="{% url 'djangoapp:dashboard' %}"
+            >Dashboard</a
+          >
+          {% else %}
+          <a
+            class="dropdown-item"
+            href="{% url 'djangoapp:profile' user_id=user.id %}"
+            >Profile</a
+          >
+          {% endif %}
+          <a class="dropdown-item" href="{% url 'djangoapp:logout' %}"
+            >Logout</a
+          >
+        </div>
+      </li>
+      {% else %}
+      <a class="nav-item nav-link" href="{% url 'djangoapp:register' %}"
+        >Register</a
+      >
+      <a class="nav-item nav-link" href="{% url 'djangoapp:user_login' %}"
+        >Login</a
+      >
+      {% endif %}
+    </div>
+  </div>
+</nav>

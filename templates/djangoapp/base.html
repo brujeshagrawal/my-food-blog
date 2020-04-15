@@ -3,8 +3,9 @@
 <html>
   <head>
     <meta charset="utf-8" />
-    <title>Base</title>
+    {% block title %}{% endblock %}
     <link rel="shortcut icon" href="{%  static 'favicon.ico' %}" />
+
     <!-- Latest compiled and minified CSS -->
     <link
       rel="stylesheet"
@@ -12,6 +13,28 @@
       integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
       crossorigin="anonymous"
     />
+
+    <!-- Google fonts -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Sofia"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bonbon&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Font awesome for icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
+
+    <!-- Bootstrap JS -->
     <script
       src="https://code.jquery.com/jquery-3.4.1.slim.min.js"
       integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n"
@@ -27,63 +50,12 @@
       integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6"
       crossorigin="anonymous"
     ></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script>
-      $(document).ready(function () {
-        $(".dashboard-body").load("{% url 'djangoapp:dashboard_profile' %}");
-      });
 
-      $(document).ready(function () {
-        $(".dashboard-addblog-button").click(function (event) {
-          $(".dashboard-button").removeClass("active");
-          $(".dashboard-addblog-button").addClass("active");
-          $(".dashboard-body").load("{% url 'blog:add_blog' %}");
-        });
-      });
-      $(document).ready(function () {
-        $(".dashboard-feedbacks-button").click(function (event) {
-          $(".dashboard-button").removeClass("active");
-          $(".dashboard-feedbacks-button").addClass("active");
-          $(".dashboard-body").load("{% url 'dashboard_feedback' %}");
-        });
-      });
-      $(document).ready(function () {
-        $(".dashboard-profile-button").click(function (event) {
-          $(".dashboard-button").removeClass("active");
-          $(".dashboard-profile-button").addClass("active");
-          $(".dashboard-body").load("{% url 'djangoapp:dashboard_profile' %}");
-        });
-      });
-      $(document).ready(function () {
-        $(".dashboard-users-button").click(function (event) {
-          var data = $(this).data("data");
-          $(".dashboard-button").removeClass("active");
-          $(".dashboard-users-button").addClass("active");
-        });
-      });
-      $(document).ready(function () {
-        $(".edit-bio").click(function (event) {
-          console.log("hi");
-          $(".display-bio").load("{% url 'djangoapp:edit_bio' %}");
-        });
-      });
-    </script>
-    <link
-      href="https://fonts.googleapis.com/css?family=Sofia"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bonbon&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@600;700&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
-    />
+    <!-- Jquery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+    {% block extra_script %}{% endblock %}
+
     <style>
       .fa {
         padding: 10px;
@@ -98,8 +70,6 @@
 
       .fa:hover {
         opacity: 0.7;
-        /* color: black;
-        background-color: white; */
       }
 
       .carousel-control-prev,
@@ -131,182 +101,12 @@
     </style>
   </head>
   <body>
-    <nav
-      class="navbar navbar-expand-lg navbar-light sticky-top"
-      style="min-height: 80px; background-color: white;"
-    >
-      <a
-        class="navbar-brand"
-        href="{% url 'index' %}"
-        style="font-family: Bonbon, cursive; font-weight: bold;"
-        ><img
-          src="{% static 'images/logo.png' %}"
-          width="40"
-          height="30"
-          class="d-inline-block align-top"
-          alt=""
-        />&nbsp;CookWithMe</a
-      >
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNavAltMarkup"
-        aria-controls="navbarNavAltMarkup"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div
-        class="collapse navbar-collapse justify-content-between"
-        id="navbarNavAltMarkup"
-      >
-        <div
-          class="navbar-nav ml-auto"
-          style="font-family: sofia; color: black; font-weight: bold;"
-        >
-          <a class="nav-item nav-link active" href="{% url 'index' %}"
-            >Home <span class="sr-only">(current)</span></a
-          >
-          <a class="nav-item nav-link" href="{% url 'blog:blog_home' %}"
-            >Blog</a
-          >
-          {% if user.is_authenticated %}
-          <li class="nav-item dropdown">
-            <a
-              class="nav-link dropdown-toggle"
-              href="#"
-              id="navbarDropdown"
-              role="button"
-              data-toggle="dropdown"
-              aria-haspopup="true"
-              aria-expanded="false"
-            >
-              Hi, {{ user.username }}
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              {% if request.user.is_superuser %}
-              <a class="dropdown-item" href="{% url 'djangoapp:dashboard' %}"
-                >Dashboard</a
-              >
-              {% else %}
-              <a
-                class="dropdown-item"
-                href="{% url 'djangoapp:profile' user_id=user.id %}"
-                >Profile</a
-              >
-              {% endif %}
-              <a class="dropdown-item" href="{% url 'logout' %}">Logout</a>
-            </div>
-          </li>
-          {% else %}
-          <a class="nav-item nav-link" href="{% url 'djangoapp:register' %}"
-            >Register</a
-          >
-          <a class="nav-item nav-link" href="{% url 'djangoapp:user_login' %}"
-            >Login</a
-          >
-          {% endif %}
-        </div>
-      </div>
-    </nav>
-    <div style="background-color: black;">
-      {% block body_block %} {% endblock %} {% block footer %}
-
-      <div
-        style="
-          margin: 10px 20px;
-          background-color: white;
-          border-radius: 5px;
-          font-family: Dancing Script, cursive;
-        "
-      >
-        <div class="row align-items-center" style="padding: 20px; color: grey;">
-          <div class="col-sm-3">
-            <p align="center" style="font-size: 20px; font-weight: bold;">
-              Receipe By Category
-            </p>
-            <ul
-              style="list-style-type: none; padding-left: 0px;"
-              align="center"
-            >
-              <a href="{% url 'blog:blog_home' %}" class="footer-option"
-                ><li>Backery</li></a
-              >
-              <a href="{% url 'blog:blog_home' %}" class="footer-option"
-                ><li>South Indian</li></a
-              >
-              <a href="{% url 'blog:blog_home' %}" class="footer-option"
-                ><li>Chinese</li></a
-              >
-              <a href="{% url 'blog:blog_home' %}" class="footer-option"
-                ><li>Italian</li></a
-              >
-              <a href="{% url 'blog:blog_home' %}" class="footer-option"
-                ><li>Punjabi</li></a
-              >
-            </ul>
-          </div>
-          <div class="col-sm-6">
-            <div align="center" style="font-size: 25px;">
-              <p>
-                <q
-                  >Food should flirt with the palette. If the food doesn't flirt
-                  with your palette, then it's not fun enough.</q
-                >
-              </p>
-              <p>Ranveer Brar</p>
-            </div>
-          </div>
-          <!-- <div class="col-sm-1">&nbsp;</div> -->
-          <div class="col-sm-3">
-            {% if request.user.is_authenticated %}
-            <form action="{% url 'feedback' %}" method="post">
-              {% csrf_token %}
-              <div class="form-group">
-                <textarea
-                  class="form-control"
-                  id="exampleFormControlTextarea1"
-                  rows="4"
-                  name="message"
-                  placeholder="Write your feedback here..."
-                ></textarea>
-              </div>
-              <button type="submit" class="btn btn-primary btn-block">
-                Submit
-              </button>
-            </form>
-            {% else %}
-            <p align="center">
-              Please Login to stay updated.
-            </p>
-            <a href="{% url 'djangoapp:user_login' %}"
-              ><button type="submit" class="btn btn-primary btn-block">
-                Login
-              </button></a
-            >
-            {% endif %}
-          </div>
-        </div>
-
-        <div class="row align-items-center">
-          <div class="col-sm"></div>
-          <div class="col-sm" align="center" style="padding: 5px;">
-            <a href="#" class="fa fa-facebook"></a>&nbsp;&nbsp;&nbsp;
-            <a href="#" class="fa fa-youtube"></a>&nbsp;&nbsp;&nbsp;
-            <a href="#" class="fa fa-instagram"></a>&nbsp;&nbsp;&nbsp;
-            <a href="#" class="fa fa-google"></a>
-          </div>
-          <div class="col-sm"></div>
-        </div>
-      </div>
-      <div>
-        <p align="center" style="color: white;">
-          @copyright with Brujesh Agrawal.
-        </p>
-      </div>
-      {% endblock %}
+    {% include "djangoapp/navbar.html" %}
+    <div style="background-color: black; font-family: Dancing Script, cursive;">
+      <!--  -->
+      {% block body_block %} {% endblock %}
+      <!--  -->
+      {% include "djangoapp/footer.html" %}
     </div>
   </body>
 </html>

@@ -1,10 +1,16 @@
-{% extends 'djangoapp/base.html' %} {% block body_block %}
+{% extends 'djangoapp/base.html' %} 
+
+{% block title %}
+<title>Login | CookWithMe</title>
+{% endblock %}
+
+{% block body_block %}
 
 <div class="row" style="padding: 100px 0px; background-color: white;">
   <div class="col-sm-4"></div>
   <div
     class="col-sm-4"
-    style="margin: 10px; font-family: Dancing Script, cursive;"
+    style="margin: 10px;"
   >
     <div
       style="
@@ -37,7 +43,7 @@
       <form
         action="{% url 'djangoapp:user_login' %}"
         method="post"
-        style="font-family: Dancing Script, cursive; font-weight: bold;"
+        style="font-weight: bold;"
       >
         {% csrf_token %}
         <div class="form-group">

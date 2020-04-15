@@ -1,17 +1,13 @@
-{% extends "djangoapp/base.html" %} {% load static %} {% block body_block %}
+{% extends "djangoapp/base.html" %} {% load static %}
 
-<!-- <div class="admin_add_blog_button" align="center">
-  {% if request.user.is_superuser %}
-  <a href="{% url 'blog:add_blog' %}"
-    ><button class="btn btn-primary" style="margin-top: 10px;">
-      Add Blog
-    </button></a
-  >
-  {% endif %}
-</div> -->
+{% block title %}
+<title>Blog | CookWithMe</title>
+{% endblock %}
+
+{% block body_block %}
 
 {% if blogs.count > 0 %}
-<div style="padding: 10px 50px; font-family: Dancing Script, cursive;">
+<div style="padding: 10px 50px;">
   {% for blog in blogs %}
   <div class="card mb-3" style="max-width: 1200px; height: 250px;">
     <div class="row no-gutters">
@@ -70,7 +66,6 @@
     height: 400px;
     text-align: center;
     font-size: 30px;
-    font-family: Dancing Script, cursive;
     padding-top: 180px;
   "
 >
